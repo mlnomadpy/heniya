@@ -22,10 +22,11 @@ A chess AI application that uses neural networks for position evaluation and can
 ```
 heniya/
 ├── main.py              # Original training script (with ONNX export added)
-├── nmn_replacement.py   # Replacement for YatNMN neural network module
+├── nmn_replacement.py   # Fallback replacement for nmn package (for compatibility)
 ├── quick_train.py       # Quick training script to generate working models
 ├── test_model.py        # Test script for model creation and ONNX export
 ├── serve.py             # Simple HTTP server for web app
+├── requirements.txt     # Python package dependencies
 ├── web/                 # Web application files
 │   ├── index.html       # Main web page
 │   ├── styles.css       # CSS styling
@@ -40,7 +41,7 @@ heniya/
 
 1. **Install Python dependencies:**
    ```bash
-   pip install torch python-chess numpy pillow onnx
+   pip install -r requirements.txt
    ```
 
 2. **Clone or download the repository**
@@ -141,7 +142,7 @@ heniya/
 - Array represents squares a1-h1, a2-h2, ..., a8-h8
 
 ### Dependencies
-- **Backend**: PyTorch, python-chess, ONNX
+- **Backend**: PyTorch, python-chess, ONNX, nmn, NumPy, Pillow, Gradio, CairoSVG
 - **Frontend**: ONNX.js, Chess.js, Chessboard.js, jQuery
 
 ## License

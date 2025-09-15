@@ -1,0 +1,8 @@
+torch
+python-chess
+numpy
+pillow
+onnx
+nmn
+gradio
+cairosvg

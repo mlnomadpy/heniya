@@ -9,22 +9,32 @@ from io import BytesIO
 # 1. DEPENDENCY INSTALLATION
 # ==============================================================================
 def install_dependencies():
-    """Installs all required packages."""
-    packages = [
-        "torch",
-        "python-chess",
-        "gradio",
-        "cairosvg",
-        "Pillow"
-    ]
-    print("Installing required packages...")
+    """Installs all required packages from requirements.txt."""
+    print("Installing required packages from requirements.txt...")
     try:
-        for package in packages:
-            subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+        subprocess.check_call([sys.executable, "-m", "pip", "install", "-r", "requirements.txt"])
         print("All packages installed successfully.")
     except subprocess.CalledProcessError as e:
         print(f"Error installing packages: {e}")
-        sys.exit(1)
+        print("Fallback: Installing individual packages...")
+        # Fallback to individual package installation
+        packages = [
+            "torch",
+            "python-chess", 
+            "numpy",
+            "pillow",
+            "onnx",
+            "nmn",
+            "gradio",
+            "cairosvg"
+        ]
+        try:
+            for package in packages:
+                subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+            print("All packages installed successfully via fallback method.")
+        except subprocess.CalledProcessError as e2:
+            print(f"Error installing packages via fallback: {e2}")
+            sys.exit(1)
 
 # To install dependencies, uncomment and run this line in a cell by itself first.
 # install_dependencies()
@@ -44,12 +54,13 @@ import torch.nn as nn
 import torch.optim as optim
 from PIL import Image
 
-# Import our replacement for YatNMN
+# Import YatNMN from nmn package (now a proper dependency)
 try:
     from nmn.torch.nmn import YatNMN
 except ImportError:
-    # Use our local replacement
+    # Fallback to local replacement if nmn package is not available
     from nmn_replacement import YatNMN
+    print("Warning: Using local nmn_replacement. Install 'nmn' package for better performance.")
 
 try:
     import cairosvg

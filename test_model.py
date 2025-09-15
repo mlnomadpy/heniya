@@ -10,7 +10,13 @@ import chess
 # Add current directory to path to import our modules
 sys.path.insert(0, os.path.dirname(__file__))
 
-from nmn_replacement import YatNMN
+# Import YatNMN from nmn package (now a proper dependency)
+try:
+    from nmn.torch.nmn import YatNMN
+except ImportError:
+    # Fallback to local replacement if nmn package is not available
+    from nmn_replacement import YatNMN
+    print("Warning: Using local nmn_replacement. Install 'nmn' package for better performance.")
 import torch.nn as nn
 
 # Simplified version of NN1 for testing
