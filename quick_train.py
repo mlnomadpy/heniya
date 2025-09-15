@@ -13,7 +13,13 @@ import random
 # Add current directory to path
 sys.path.insert(0, os.path.dirname(__file__))
 
-from nmn_replacement import YatNMN
+# Import YatNMN from nmn package (now a proper dependency)  
+try:
+    from nmn.torch.nmn import YatNMN
+except ImportError:
+    # Fallback to local replacement if nmn package is not available
+    from nmn_replacement import YatNMN
+    print("Warning: Using local nmn_replacement. Install 'nmn' package for better performance.")
 
 class NN1(nn.Module):
     """The neural network architecture for evaluating chess positions."""
