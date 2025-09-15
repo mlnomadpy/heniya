@@ -1,0 +1,274 @@
+/* Heniya Chess AI Styles */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    color: white;
+}
+
+header h1 {
+    font-size: 3em;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+header p {
+    font-size: 1.2em;
+    opacity: 0.9;
+}
+
+main {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.game-container {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.board-container {
+    flex: 0 0 auto;
+}
+
+#chessboard {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.controls {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.status-panel, .control-panel, .model-panel {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #e9ecef;
+}
+
+.status-panel h3, .control-panel h3, .model-panel h3 {
+    margin-bottom: 15px;
+    color: #495057;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 5px;
+}
+
+#status {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #28a745;
+}
+
+#evaluation {
+    font-size: 1em;
+    color: #6c757d;
+    margin-bottom: 10px;
+}
+
+#thinking {
+    color: #ffc107;
+    font-weight: bold;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+.control-panel label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #495057;
+}
+
+.control-panel select {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    font-size: 1em;
+}
+
+.control-panel button, .model-panel button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s;
+}
+
+.control-panel button:hover, .model-panel button:hover {
+    background: #0056b3;
+}
+
+.control-panel button:disabled {
+    background: #6c757d;
+    cursor: not-allowed;
+}
+
+#model-status {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    background: #e9ecef;
+    font-weight: bold;
+}
+
+#model-status.loaded {
+    background: #d4edda;
+    color: #155724;
+}
+
+#model-status.error {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.model-info {
+    margin-top: 10px;
+}
+
+.model-info small {
+    color: #6c757d;
+    line-height: 1.4;
+}
+
+.move-history {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #e9ecef;
+}
+
+.move-history h3 {
+    margin-bottom: 15px;
+    color: #495057;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 5px;
+}
+
+#move-list {
+    font-family: 'Courier New', monospace;
+    line-height: 1.6;
+    max-height: 200px;
+    overflow-y: auto;
+    padding: 10px;
+    background: white;
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+}
+
+.move-pair {
+    margin-bottom: 5px;
+}
+
+.move-number {
+    font-weight: bold;
+    color: #495057;
+    margin-right: 10px;
+}
+
+.move {
+    margin-right: 15px;
+    padding: 2px 5px;
+    border-radius: 3px;
+    background: #e9ecef;
+}
+
+footer {
+    text-align: center;
+    margin-top: 30px;
+    color: white;
+    opacity: 0.8;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .game-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .board-container {
+        align-self: center;
+    }
+    
+    #chessboard {
+        width: 320px !important;
+    }
+    
+    header h1 {
+        font-size: 2em;
+    }
+    
+    .container {
+        padding: 10px;
+    }
+    
+    main {
+        padding: 20px;
+    }
+}
+
+/* Chess board customization */
+.highlight-square {
+    background-color: #a0522d !important;
+}
+
+.highlight-move {
+    background-color: #ffff00 !important;
+}
+
+/* Loading animation */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #007bff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-right: 10px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

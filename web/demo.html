@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heniya Chess AI - Offline Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+        }
+        .container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .demo-content {
+            text-align: center;
+            margin: 30px 0;
+        }
+        .feature-list {
+            text-align: left;
+            margin: 20px 0;
+        }
+        .feature-list li {
+            margin: 10px 0;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 5px;
+            border-left: 4px solid #007bff;
+        }
+        .status {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 1px solid #c3e6cb;
+        }
+        .instructions {
+            background: #e7f3ff;
+            color: #004085;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 1px solid #bee5eb;
+        }
+        .code {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            margin: 10px 0;
+            border: 1px solid #e9ecef;
+        }
+        .button {
+            background: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px;
+        }
+        .button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>♟️ Heniya Chess AI</h1>
+            <p>Neural Network Chess Engine with ONNX.js Integration</p>
+        </header>
+        
+        <div class="status">
+            <h3>✅ Implementation Complete!</h3>
+            <p>The chess AI has been successfully productionized with the following components:</p>
+        </div>
+        
+        <div class="demo-content">
+            <h2>Features Implemented</h2>
+            <ul class="feature-list">
+                <li><strong>Neural Network Training:</strong> PyTorch-based chess position evaluation with attention mechanisms</li>
+                <li><strong>ONNX Export:</strong> Models are automatically exported to ONNX format for web deployment</li>
+                <li><strong>Web Application:</strong> Complete chess interface with drag-and-drop piece movement</li>
+                <li><strong>ONNX.js Integration:</strong> Client-side AI inference without server requirements</li>
+                <li><strong>Negamax Search:</strong> Advanced search algorithm combined with neural network evaluation</li>
+                <li><strong>Responsive Design:</strong> Works on desktop and mobile devices</li>
+                <li><strong>Model Upload:</strong> Support for custom ONNX chess models</li>
+                <li><strong>Configurable AI:</strong> Adjustable search depth for difficulty levels</li>
+            </ul>
+        </div>
+
+        <div class="instructions">
+            <h3>🚀 How to Use</h3>
+            <p>To run the full application with external dependencies:</p>
+            <div class="code">
+                # 1. Install dependencies<br>
+                pip install torch python-chess numpy pillow onnx<br><br>
+                # 2. Generate a trained model<br>
+                python quick_train.py<br><br>
+                # 3. Start the web server<br>
+                python serve.py<br><br>
+                # 4. Open browser to http://localhost:8000<br>
+                # Note: External CDN resources need internet access
+            </div>
+        </div>
+
+        <div class="demo-content">
+            <h2>Project Structure</h2>
+            <div class="code">
+                heniya/<br>
+                ├── main.py &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Enhanced training script with ONNX export<br>
+                ├── nmn_replacement.py &nbsp;&nbsp;&nbsp;# Custom neural network module replacement<br>
+                ├── quick_train.py &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Quick model training and export<br>
+                ├── test_model.py &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Model testing and validation<br>
+                ├── serve.py &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Web server for the application<br>
+                ├── web/ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Web application files<br>
+                │   ├── index.html &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Main chess interface<br>
+                │   ├── styles.css &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Responsive styling<br>
+                │   ├── chess-ai.js &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# ONNX.js AI engine with negamax<br>
+                │   ├── app.js &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Application logic and UI management<br>
+                │   └── chessy_model.onnx &nbsp;# Trained chess model (auto-generated)<br>
+                ├── chessy_model.pth &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# PyTorch model<br>
+                └── chessy_model.onnx &nbsp;&nbsp;&nbsp;&nbsp;# ONNX exported model
+            </div>
+        </div>
+
+        <div class="status">
+            <h3>✨ Key Achievements</h3>
+            <ul>
+                <li><strong>Fixed Dependencies:</strong> Created YatNMN replacement module to resolve missing imports</li>
+                <li><strong>Added ONNX Export:</strong> Enhanced the NN1 model class with ONNX export functionality</li>
+                <li><strong>Built Web Interface:</strong> Complete chess application with modern UI</li>
+                <li><strong>Implemented AI Engine:</strong> ONNX.js-based inference with negamax search</li>
+                <li><strong>Created Training Pipeline:</strong> From training to web deployment in one workflow</li>
+                <li><strong>Added Documentation:</strong> Comprehensive README with usage instructions</li>
+            </ul>
+        </div>
+
+        <div class="demo-content">
+            <h2>Technical Implementation</h2>
+            <p><strong>Neural Network:</strong> Uses embedding layers, multi-head attention, and custom neural modules for chess position evaluation.</p>
+            <p><strong>Search Algorithm:</strong> Negamax with alpha-beta pruning combines traditional chess AI with neural network evaluation.</p>
+            <p><strong>Web Technology:</strong> ONNX.js enables client-side inference, Chess.js handles game logic, and Chessboard.js provides the visual interface.</p>
+            <p><strong>Model Format:</strong> ONNX ensures cross-platform compatibility and efficient browser-based inference.</p>
+        </div>
+
+        <footer style="text-align: center; margin-top: 40px; color: #666;">
+            <p>Built with PyTorch, ONNX.js, and modern web technologies</p>
+        </footer>
+    </div>
+</body>
+</html>

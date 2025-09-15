@@ -42,8 +42,14 @@ import torch
 import torch.multiprocessing as mp
 import torch.nn as nn
 import torch.optim as optim
-from nmn.torch.nmn import YatNMN
 from PIL import Image
+
+# Import our replacement for YatNMN
+try:
+    from nmn.torch.nmn import YatNMN
+except ImportError:
+    # Use our local replacement
+    from nmn_replacement import YatNMN
 
 try:
     import cairosvg
@@ -94,6 +100,32 @@ class NN1(nn.Module):
         x = x.view(x.size(0), -1)  # Flatten
         x = self.neurons(x)
         return x
+    
+    def export_to_onnx(self, onnx_path, device='cpu'):
+        """Export the model to ONNX format for use with ONNX.js"""
+        self.eval()
+        self.to(device)
+        
+        # Create dummy input
+        dummy_input = torch.randint(0, 13, (1, 64), dtype=torch.long).to(device)
+        
+        # Export to ONNX
+        torch.onnx.export(
+            self,
+            dummy_input,
+            onnx_path,
+            export_params=True,
+            opset_version=13,  # Updated to version 13 for better compatibility
+            do_constant_folding=True,
+            input_names=['board_input'],
+            output_names=['evaluation'],
+            dynamic_axes={
+                'board_input': {0: 'batch_size'},
+                'evaluation': {0: 'batch_size'}
+            }
+        )
+        print(f"Model exported to ONNX format: {onnx_path}")
+        return onnx_path
 
 
 # ==============================================================================
@@ -252,7 +284,13 @@ class Trainer:
 
             torch.save(self.model.state_dict(), self.config['model_path'])
             print(f"Epoch complete. Saved model to {self.config['model_path']}")
+        
         print("\nTraining complete.")
+        
+        # Export to ONNX after training
+        onnx_path = self.config['model_path'].replace('.pth', '.onnx')
+        self.model.export_to_onnx(onnx_path, device='cpu')
+        print(f"Model exported to ONNX: {onnx_path}")
 
 # ==============================================================================
 # 5. GRADIO WEB UI FUNCTIONALITY
